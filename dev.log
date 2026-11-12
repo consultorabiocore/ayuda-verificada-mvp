@@ -1,0 +1,108 @@
+$ next dev --port "3001"
+▲ Next.js 16.4.6 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://192.168.1.5:3001
+✓ Ready in 1076ms
+✓ Running next.config.ts took 100ms
+
+○ Compiling /explore ...
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/explore" tree={[...]} params={{}} renderTree={{...}} segmentPath={[...]} ...>
+          <SegmentViewNode type="page" pagePath="explore/pa...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function ExplorePage} serverProvidedParams={{...}}>
+              <ExplorePage params={Promise} searchParams={Promise}>
+                <Suspense fallback={<div>}>
+                  <ExploreInner>
+                    <div className="mx-auto ma...">
+                      <h1>
+                      <p>
+                      <div>
+                      <div className="mt-6 grid ...">
+                        <Card>
++                         <div className="rounded-xl border border-zinc-200 bg-white shadow-sm">
+-                         <p className="text-sm text-zinc-500">
+          ...
+        ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at div (<anonymous>)
+    at Card (src/components/ui/card.tsx:2:1)
+    at <unknown> (src/app/explore/page.tsx:67:72)
+    at Array.map (<anonymous>)
+    at ExploreInner (src/app/explore/page.tsx:67:72)
+    at ExplorePage (src/app/explore/page.tsx:19:7)
+  1 | import * as React from "react";
+> 2 | import { cn } from "@/lib/utils";
+    | ^
+  3 |
+  4 | export function Card({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  5 |   return <div className={cn("rounded-xl border border-zinc-200 bg-white shadow-sm", className)} {...props} />;
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+      <LoadingBoundary name="r_1/" loading={null}>
+        <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+          <RedirectBoundary>
+            <RedirectErrorBoundary router={{...}}>
+              <InnerLayoutRouter url="/requests/r_1" tree={[...]} params={{id:"r_1"}} renderTree={{...}} ...>
+                <SegmentViewNode type="page" pagePath="requests/[...">
+                  <SegmentTrieNode>
+                  <ClientPageRoot Component={function RequestDetailPage} serverProvidedParams={{...}}>
+                    <RequestDetailPage params={Promise} searchParams={Promise}>
+                      <Suspense fallback={<div>}>
+                        <RequestDetailInner>
+                          <div className="mx-auto ma...">
++                           <div className="grid gap-6 md:grid-cols-3">
+-                           Cargando...
+                ...
+              ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at div (<anonymous>)
+    at RequestDetailInner (src/app/requests/[id]/page.tsx:92:69)
+    at RequestDetailPage (src/app/requests/[id]/page.tsx:20:7)
+  90 |   }
+  91 |
+> 92 |   if (!request) return <div className="mx-auto max-w-6xl px-4 py-8">Cargando...</div>;
+     |                                                                     ^
+  93 |
+  94 |   return (
+  95 |     <div className="mx-auto max-w-6xl px-4 py-8">
+ GET /explore 200 in 5.6s (next.js: 4.3s, proxy.ts: 291ms, application-code: 973ms)
+ GET /explore 200 in 328ms (next.js: 229ms, proxy.ts: 20ms, application-code: 79ms)
+ GET /requests/r_1 200 in 11.2s (next.js: 9.6s, proxy.ts: 10ms, application-code: 1601ms)
+✓ Compiled in 231ms
+ GET /explore 200 in 599ms (next.js: 457ms, proxy.ts: 14ms, application-code: 128ms)
+ GET /explore 200 in 450ms (next.js: 33ms, proxy.ts: 16ms, application-code: 401ms)
+ GET /requests/r_1 200 in 2.7s (next.js: 830ms, proxy.ts: 12ms, application-code: 1889ms)
+✓ Compiled in 40ms
+✓ Compiled in 0ms
+ GET /explore 200 in 236ms (next.js: 119ms, proxy.ts: 14ms, application-code: 102ms)
+ GET /explore 200 in 277ms (next.js: 117ms, proxy.ts: 97ms, application-code: 62ms)
+ GET /requests/r_1 200 in 2.6s (next.js: 966ms, proxy.ts: 53ms, application-code: 1587ms)
