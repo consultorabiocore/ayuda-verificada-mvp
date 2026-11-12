@@ -106,3 +106,72 @@ https://react.dev/link/hydration-mismatch
  GET /explore 200 in 236ms (next.js: 119ms, proxy.ts: 14ms, application-code: 102ms)
  GET /explore 200 in 277ms (next.js: 117ms, proxy.ts: 97ms, application-code: 62ms)
  GET /requests/r_1 200 in 2.6s (next.js: 966ms, proxy.ts: 53ms, application-code: 1587ms)
+✓ Compiled in 4ms
+ GET /explore 200 in 176ms (next.js: 15ms, proxy.ts: 19ms, application-code: 142ms)
+✓ Compiled in 2ms
+ GET /explore 200 in 1604ms (next.js: 131ms, proxy.ts: 39ms, application-code: 1433ms)
+ GET /explore 200 in 1823ms (next.js: 286ms, proxy.ts: 67ms, application-code: 1470ms)
+ GET /requests/r_1 200 in 1657ms (next.js: 400ms, proxy.ts: 276ms, application-code: 981ms)
+✓ Compiled in 38ms
+ GET /requests/r_1 200 in 945ms (next.js: 133ms, proxy.ts: 29ms, application-code: 783ms)
+ GET /explore 200 in 994ms (next.js: 280ms, proxy.ts: 32ms, application-code: 681ms)
+ GET /explore 200 in 614ms (next.js: 164ms, proxy.ts: 183ms, application-code: 267ms)
+ GET /requests/r_1 200 in 214ms (next.js: 31ms, proxy.ts: 95ms, application-code: 88ms)
+✓ Compiled in 6ms
+ GET /requests/r_1 200 in 217ms (next.js: 67ms, proxy.ts: 19ms, application-code: 131ms)
+ GET /explore 200 in 1481ms (next.js: 94ms, proxy.ts: 36ms, application-code: 1352ms)
+✓ Compiled in 241ms
+ GET /explore 200 in 306ms (next.js: 16ms, proxy.ts: 198ms, application-code: 92ms)
+ GET /requests/r_1 200 in 224ms (next.js: 35ms, proxy.ts: 26ms, application-code: 163ms)
+ GET /requests/r_1 200 in 130ms (next.js: 31ms, proxy.ts: 23ms, application-code: 77ms)
+✓ Compiled in 23ms
+✓ Compiled in 149ms
+ GET /explore 200 in 819ms (next.js: 237ms, proxy.ts: 36ms, application-code: 547ms)
+ GET /requests/r_1 200 in 983ms (next.js: 337ms, proxy.ts: 33ms, application-code: 613ms)
+ GET /explore 200 in 524ms (next.js: 88ms, proxy.ts: 223ms, application-code: 213ms)
+ GET /requests/r_1 200 in 288ms (next.js: 33ms, proxy.ts: 105ms, application-code: 150ms)
+ GET /requests/r_1 200 in 4.2s (next.js: 3.5s, proxy.ts: 334ms, application-code: 359ms)
+✓ Compiled in 158ms
+ GET /explore 200 in 2.9s (next.js: 1931ms, proxy.ts: 70ms, application-code: 901ms)
+✓ Compiled in 30ms
+ GET /explore 200 in 585ms (next.js: 116ms, proxy.ts: 162ms, application-code: 306ms)
+ GET /requests/r_1 200 in 2.2s (next.js: 1869ms, proxy.ts: 135ms, application-code: 155ms)
+ GET /explore 200 in 3.3s (next.js: 1117ms, proxy.ts: 13ms, application-code: 2.2s)
+ GET /requests/r_1 200 in 3.3s (next.js: 1138ms, proxy.ts: 991ms, application-code: 1153ms)
+ GET /requests/r_1 200 in 2.5s (next.js: 1795ms, proxy.ts: 173ms, application-code: 539ms)
+✓ Compiled in 145ms
+ GET /explore 200 in 3.0s (next.js: 587ms, proxy.ts: 733ms, application-code: 1677ms)
+ GET /requests/r_1 200 in 2.7s (next.js: 773ms, proxy.ts: 614ms, application-code: 1347ms)
+ GET /explore 200 in 4.2s (next.js: 565ms, proxy.ts: 988ms, application-code: 2.7s)
+ GET /requests/r_1 200 in 2.4s (next.js: 1390ms, proxy.ts: 584ms, application-code: 428ms)
+✓ Compiled in 5.1s
+ GET /requests/r_1 200 in 3.7s (next.js: 1560ms, proxy.ts: 40ms, application-code: 2.1s)
+ GET /explore 200 in 4.0s (next.js: 2.6s, proxy.ts: 378ms, application-code: 1003ms)
+ GET /requests/r_1 200 in 4.9s (next.js: 3.5s, proxy.ts: 70ms, application-code: 1291ms)
+ GET /explore 200 in 6.9s (next.js: 4.1s, proxy.ts: 1299ms, application-code: 1444ms)
+✓ Compiled in 613ms
+ GET /requests/r_1 200 in 2.9s (next.js: 1382ms, proxy.ts: 222ms, application-code: 1251ms)
+ GET /requests/r_1 200 in 231ms (next.js: 94ms, proxy.ts: 12ms, application-code: 125ms)
+ GET /explore 200 in 1531ms (next.js: 1390ms, proxy.ts: 44ms, application-code: 98ms)
+ GET /requests/r_1 200 in 4.3s (next.js: 2.5s, proxy.ts: 643ms, application-code: 1210ms)
+ GET /explore 200 in 4.5s (next.js: 3.7s, proxy.ts: 356ms, application-code: 436ms)
+✓ Compiled in 232ms
+✓ Compiled in 54ms
+ GET /explore 200 in 267ms (next.js: 166ms, proxy.ts: 22ms, application-code: 80ms)
+ GET /explore 200 in 2.1s (next.js: 732ms, proxy.ts: 167ms, application-code: 1238ms)
+ GET /requests/r_1 200 in 2.3s (next.js: 1447ms, proxy.ts: 203ms, application-code: 674ms)
+ GET /requests/r_1 200 in 2.8s (next.js: 692ms, proxy.ts: 11ms, application-code: 2.1s)
+ GET /requests/r_1 200 in 229ms (next.js: 54ms, proxy.ts: 13ms, application-code: 162ms)
+✓ Compiled in 200ms
+ GET /requests/r_1 200 in 337ms (next.js: 126ms, proxy.ts: 15ms, application-code: 196ms)
+✓ Compiled in 567ms
+ GET /requests/r_1 200 in 1730ms (next.js: 669ms, proxy.ts: 12ms, application-code: 1048ms)
+ GET /explore 200 in 1482ms (next.js: 569ms, proxy.ts: 137ms, application-code: 775ms)
+✓ Compiled in 1616ms
+ GET /explore 200 in 4.7s (next.js: 1657ms, proxy.ts: 50ms, application-code: 3.0s)
+ GET /requests/r_1 200 in 5.0s (next.js: 1934ms, proxy.ts: 72ms, application-code: 3.0s)
+ GET /requests/r_1 200 in 1415ms (next.js: 821ms, proxy.ts: 159ms, application-code: 435ms)
+ GET /requests/r_1 200 in 507ms (next.js: 298ms, proxy.ts: 36ms, application-code: 173ms)
+ GET /explore 200 in 3.0s (next.js: 947ms, proxy.ts: 19ms, application-code: 2.1s)
+✓ Compiled in 543ms
+ GET /requests/r_1 200 in 1547ms (next.js: 825ms, proxy.ts: 145ms, application-code: 577ms)

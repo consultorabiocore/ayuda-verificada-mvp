@@ -55,6 +55,7 @@ export default function DashboardPage() {
                   </div>
                   <div className="mt-2 flex justify-between text-xs text-zinc-600">
                     <span>Solicitado {formatCLP(r.amountRequested)}</span>
+                    <span>Comprometido {formatCLP(r.amountCommitted)}</span>
                     <span>Recibido {formatCLP(r.amountReceived)}</span>
                     <span>Pagado {formatCLP(r.amountPaid)}</span>
                   </div>

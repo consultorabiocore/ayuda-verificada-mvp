@@ -7,7 +7,7 @@ import { getRequests, saveRequests, getDonations, saveDonations, getCurrentUser,
 import type { HelpRequest, Donation } from "@/lib/types";
 import { STATUS_LABELS, CATEGORY_LABELS, URGENCY_LABELS } from "@/lib/types";
 import { formatCLP, progressPct, uid } from "@/lib/utils";
-import { paymentProvider } from "@/lib/payments";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -52,7 +52,6 @@ function RequestDetailInner() {
       setMessage("El monto supera lo pendiente");
       return;
     }
-    const tx = await paymentProvider.createDonationIntent({ requestId: request.id, amount: amt, donorId: user.id });
     const donation: Donation = {
       id: uid("don"),
       donorId: user.id,
@@ -60,9 +59,9 @@ function RequestDetailInner() {
       requestId: request.id,
       amount: amt,
       anonymousPublic: anonymous,
-      status: "confirmed",
+      status: "committed",
       createdAt: new Date().toISOString(),
-      transactionId: tx.transactionId,
+      transactionId: uid("txn"),
     };
     const donations = getDonations();
     donations.unshift(donation);
@@ -71,9 +70,8 @@ function RequestDetailInner() {
     const requests = getRequests();
     const idx = requests.findIndex((r) => r.id === request.id);
     if (idx >= 0) {
-      requests[idx].amountReceived += amt;
-      requests[idx].amountConfirmed += amt;
-      if (requests[idx].amountReceived >= requests[idx].amountRequested) {
+      requests[idx].amountCommitted += amt;
+      if (requests[idx].amountCommitted >= requests[idx].amountRequested) {
         requests[idx].status = "fully_funded";
       } else {
         requests[idx].status = "partially_funded";
@@ -83,9 +81,9 @@ function RequestDetailInner() {
       setRequest(requests[idx]);
     }
 
-    pushNotification({ userId: request.applicantId, title: "Nuevo aporte recibido", body: `Se registró un aporte de ${formatCLP(amt)} (simulado).` });
-    logAudit({ actorId: user.id, actorRole: user.role, action: "donation_created", entityType: "donation", entityId: donation.id, metadata: { amount: amt, simulated: true } });
-    setMessage(`Aporte simulado registrado: ${formatCLP(amt)}`);
+    pushNotification({ userId: request.applicantId, title: "Nuevo aporte comprometido", body: `Se comprometió un aporte de ${formatCLP(amt)} (transferencia directa).` });
+    logAudit({ actorId: user.id, actorRole: user.role, action: "donation_committed", entityType: "donation", entityId: donation.id, metadata: { amount: amt, direct_transfer: true } });
+    setMessage(`Aporte comprometido: ${formatCLP(amt)}. Realiza la transferencia directa y luego informa el comprobante.`);
     setAmount("");
   }
 
@@ -114,6 +112,23 @@ function RequestDetailInner() {
 
           <Card>
             <CardContent className="p-6">
+              <h2 className="font-semibold">Datos de pago (transferencia directa)</h2>
+              {request.paymentDetailsAuthorized && request.paymentDetails ? (
+                <div className="mt-2 space-y-1 text-sm text-zinc-700">
+                  <p>Banco: {request.paymentDetails.bank}</p>
+                  <p>Tipo de cuenta: {request.paymentDetails.accountType}</p>
+                  <p>Número: {request.paymentDetails.accountNumber}</p>
+                  <p>Titular: {request.paymentDetails.holder}</p>
+                  <p className="mt-2 text-xs text-zinc-500">Compartido bajo autorización del beneficiario. Realiza la transferencia y luego informa el comprobante.</p>
+                </div>
+              ) : (
+                <p className="mt-2 text-sm text-zinc-600">El beneficiario no ha autorizado compartir datos de pago. Contacta a la plataforma para coordinar el pago al acreedor por canales oficiales.</p>
+              )}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-6">
               <h2 className="font-semibold">Historial público de avances</h2>
               <ul className="mt-2 space-y-1 text-sm text-zinc-600">
                 <li>Solicitud recibida y verificada.</li>
@@ -128,13 +143,13 @@ function RequestDetailInner() {
           <Card>
             <CardContent className="p-6">
               <h2 className="font-semibold">Progreso</h2>
-              <p className="mt-2 text-2xl font-bold text-emerald-700">{formatCLP(request.amountReceived)}</p>
-              <p className="text-xs text-zinc-600">de {formatCLP(request.amountRequested)}</p>
-              <Progress value={progressPct(request.amountReceived, request.amountRequested)} className="mt-2" />
+              <p className="mt-2 text-2xl font-bold text-emerald-700">{formatCLP(request.amountCommitted)}</p>
+              <p className="text-xs text-zinc-600">comprometido de {formatCLP(request.amountRequested)}</p>
+              <Progress value={progressPct(request.amountCommitted, request.amountRequested)} className="mt-2" />
               <div className="mt-3 space-y-1 text-xs text-zinc-600">
-                <p>Prometido: {formatCLP(request.amountReceived)}</p>
-                <p>Recibido: {formatCLP(request.amountConfirmed)}</p>
-                <p>Pagado: {formatCLP(request.amountPaid)}</p>
+                <p>Comprometido: {formatCLP(request.amountCommitted)}</p>
+                <p>Recibido confirmado: {formatCLP(request.amountReceived)}</p>
+                <p>Pagado al acreedor: {formatCLP(request.amountPaid)}</p>
               </div>
             </CardContent>
           </Card>
@@ -147,9 +162,9 @@ function RequestDetailInner() {
                 <input type="checkbox" checked={anonymous} onChange={(e) => setAnonymous(e.target.checked)} />
                 Aportar de forma anónima públicamente
               </label>
-              <Button className="w-full" onClick={donate}>Donar (simulado)</Button>
+              <Button className="w-full" onClick={donate}>Comprometer aporte (transferencia directa)</Button>
               {message && <p className="text-sm text-emerald-700">{message}</p>}
-              <p className="text-xs text-zinc-500">Operación simulada. No se mueve dinero real.</p>
+              <p className="text-xs text-zinc-500">No se mueve dinero por la plataforma. La transferencia es directa entre donante y beneficiario/acreedor.</p>
             </CardContent>
           </Card>
         </div>

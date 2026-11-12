@@ -34,6 +34,10 @@ export default function AdminPage() {
 
   function applyStatus() {
     if (!selected || !newStatus) return;
+    if (user && selected.applicantId === user.id) {
+      alert("No puedes aprobar ni modificar tu propia solicitud.");
+      return;
+    }
     const all = getRequests();
     const idx = all.findIndex((r) => r.id === selected.id);
     if (idx < 0) return;
@@ -50,6 +54,7 @@ export default function AdminPage() {
     total: requests.length,
     published: requests.filter((r) => r.status === "published" || r.status === "partially_funded" || r.status === "fully_funded").length,
     totalRequested: requests.reduce((a, r) => a + r.amountRequested, 0),
+    totalCommitted: requests.reduce((a, r) => a + r.amountCommitted, 0),
     totalReceived: requests.reduce((a, r) => a + r.amountReceived, 0),
   };
 
@@ -58,11 +63,12 @@ export default function AdminPage() {
       <h1 className="text-2xl font-bold">Panel administrativo</h1>
       <p className="text-sm text-zinc-600">Usuario: {user.displayName} ({user.role})</p>
 
-      <div className="mt-4 grid gap-3 sm:grid-cols-4">
+      <div className="mt-4 grid gap-3 sm:grid-cols-5">
         <Card><CardContent className="p-4"><p className="text-2xl font-bold">{stats.total}</p><p className="text-xs">Solicitudes</p></CardContent></Card>
         <Card><CardContent className="p-4"><p className="text-2xl font-bold">{stats.published}</p><p className="text-xs">Publicadas</p></CardContent></Card>
         <Card><CardContent className="p-4"><p className="text-2xl font-bold">{formatCLP(stats.totalRequested)}</p><p className="text-xs">Total solicitado</p></CardContent></Card>
-        <Card><CardContent className="p-4"><p className="text-2xl font-bold">{formatCLP(stats.totalReceived)}</p><p className="text-xs">Total recaudado</p></CardContent></Card>
+        <Card><CardContent className="p-4"><p className="text-2xl font-bold">{formatCLP(stats.totalCommitted)}</p><p className="text-xs">Total comprometido</p></CardContent></Card>
+        <Card><CardContent className="p-4"><p className="text-2xl font-bold">{formatCLP(stats.totalReceived)}</p><p className="text-xs">Total recibido</p></CardContent></Card>
       </div>
 
       <div className="mt-6 grid gap-6 md:grid-cols-2">
@@ -95,7 +101,7 @@ export default function AdminPage() {
                 <h2 className="font-semibold">{selected.title}</h2>
                 <p className="text-sm text-zinc-600">{selected.description}</p>
                 <p className="text-xs text-zinc-500">Solicitante: {selected.applicantDisplayName} · Región: {selected.region}</p>
-                <p className="text-xs text-zinc-500">Monto: {formatCLP(selected.amountRequested)} · Recibido: {formatCLP(selected.amountReceived)}</p>
+                <p className="text-xs text-zinc-500">Solicitado: {formatCLP(selected.amountRequested)} · Comprometido: {formatCLP(selected.amountCommitted)} · Recibido: {formatCLP(selected.amountReceived)} · Pagado: {formatCLP(selected.amountPaid)}</p>
 
                 <div>
                   <label className="text-sm font-medium">Nuevo estado</label>

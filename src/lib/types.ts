@@ -77,14 +77,21 @@ export type HelpRequest = {
   title: string;
   description: string;
   amountRequested: number; // CLP
-  amountReceived: number; // promised/pledged
-  amountConfirmed: number; // received
-  amountPaid: number; // paid to provider
+  amountCommitted: number; // aportes comprometidos
+  amountReceived: number; // recibido y confirmado
+  amountPaid: number; // pagado al acreedor (deuda)
   urgency: Urgency;
   region: string;
   commune?: string;
   status: RequestStatus;
   providerId?: string;
+  paymentDetailsAuthorized: boolean;
+  paymentDetails?: {
+    bank: string;
+    accountType: string;
+    accountNumber: string;
+    holder: string;
+  };
   verificationScore?: VerificationScore;
   createdAt: string;
   updatedAt: string;
@@ -101,7 +108,7 @@ export type Donation = {
   requestId: string;
   amount: number;
   anonymousPublic: boolean;
-  status: "pledged" | "confirmed" | "paid" | "refunded" | "cancelled";
+  status: "committed" | "transfer_reported" | "received_confirmed" | "paid" | "cancelled" | "disputed";
   createdAt: string;
   transactionId: string;
 };
