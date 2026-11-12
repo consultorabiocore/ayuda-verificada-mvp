@@ -32,7 +32,7 @@ export default function Home() {
               </Link>
             </div>
             <p className="mt-4 text-xs text-zinc-500">
-              Donaciones simuladas en esta versión. No se mueve dinero real.
+              Los aportes se transfieren directamente a la persona o acreedor. La plataforma no recibe ni custodia dinero.
             </p>
           </div>
           <Card>
