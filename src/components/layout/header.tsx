@@ -68,9 +68,14 @@ export function Header() {
               </select>
             </>
           ) : (
-            <Link href="/login">
-              <Button size="sm">Iniciar sesión</Button>
-            </Link>
+            <div className="flex items-center gap-2">
+              <Link href="/login">
+                <Button size="sm" variant="outline">Iniciar sesión</Button>
+              </Link>
+              <Link href="/register">
+                <Button size="sm">Crear cuenta</Button>
+              </Link>
+            </div>
           )}
         </div>
       </div>

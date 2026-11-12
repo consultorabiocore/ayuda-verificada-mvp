@@ -25,9 +25,14 @@ export default function Home() {
                   Quiero ayudar
                 </Button>
               </Link>
+              <Link href="/register">
+                <Button size="lg" variant="secondary">
+                  Crear cuenta
+                </Button>
+              </Link>
             </div>
             <p className="mt-4 text-xs text-zinc-500">
-              Versión MVP con donaciones simuladas. No se mueve dinero real.
+              Donaciones simuladas en esta versión. No se mueve dinero real.
             </p>
           </div>
           <Card>
@@ -66,7 +71,7 @@ export default function Home() {
           {[
             { label: "Solicitudes verificadas", value: "3" },
             { label: "Campañas publicadas", value: "2" },
-            { label: "Monto recaudado", value: formatCLP(440000) },
+            { label: "Monto comprometido", value: formatCLP(440000) },
             { label: "Necesidades pagadas", value: "1" },
           ].map((k) => (
             <Card key={k.label}>
