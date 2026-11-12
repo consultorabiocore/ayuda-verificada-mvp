@@ -30,5 +30,11 @@ Transferencia directa. Sin pasarelas ni custodia de fondos. Estados: comprometid
 - Vercel: https://web-jade-one-64.vercel.app
 - GitHub: https://github.com/consultorabiocore/ayuda-verificada-mvp
 
+## Android
+- Proyecto Capacitor creado en `mobile/`.
+- App ID: com.ayudaverificada.app
+- Carga la web desplegada.
+- Documentación en `mobile/*.md`.
+
 ## Próximo paso
 Configurar Supabase y ejecutar migraciones.
