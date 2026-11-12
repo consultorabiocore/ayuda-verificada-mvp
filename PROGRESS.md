@@ -27,7 +27,7 @@ Transferencia directa. Sin pasarelas ni custodia de fondos. Estados: comprometid
 - SUPABASE_SERVICE_ROLE_KEY
 
 ## Despliegue
-- Vercel: https://web-jade-one-64.vercel.app
+- Vercel: https://ayuda-verificada.vercel.app
 - GitHub: https://github.com/consultorabiocore/ayuda-verificada-mvp
 
 ## Android
